@@ -1,0 +1,60 @@
+
+.container{
+    width: 25%;
+    margin-top: 100px;
+    text-align: center;
+    background-color: #6c757d;
+    box-shadow: 5px 5px 10px 0px black;
+}
+
+input{
+    height: 50px;
+    width: 105%;
+    margin-left: -15px;
+}
+
+#resultado{
+    border-top: 0px;
+}
+
+#operacion{
+    border-bottom: 0px;
+}
+
+.numeros, .operadores{
+    background-color: #6c757d;
+    color: white;
+    font-weight: bold;
+}
+
+.numeros{ 
+    height: 87px;}
+
+
+.operadores{
+    background-color: #198754; 
+}
+
+.contNumeros, .contOp{
+    width: auto;
+    margin: 0;
+    margin-left: -12px;
+    margin-right: -12px;
+    box-shadow: none;
+}
+
+.contNumeros{
+    height: 0px;
+}
+.contOp{
+    margin-left: 76%;
+}
+
+@media (max-width: 800px) { 
+    .container{
+        width: 100%;
+    }
+    input{
+        margin-left: -10px;
+    }
+}
