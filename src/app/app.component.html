@@ -1,87 +1,87 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <input type="text" name="" id="operacion">
+      <input type="text" name="" id="operacion" [(ngModel)]="operation">
     </div>
     <div class="col-12">
-      <input type="text" name="" id="resultado">
+      <input type="text" name="" id="resultado" [(ngModel)]="resultado">
     </div>
   </div>
   <div class="container contNumeros"> 
     <div class="row">
     <div class="col-3 col-lg-3 numeros pt-1">
-      <div class="btn btn-secondary py-4 w-100" (click)="clickNueve()">9</div> 
+      <div class="btn btn-secondary py-4 w-100" (click)="insertNumber('9')">9</div> 
     </div>
     <div class="col-3 col-lg-3 numeros pt-1">
-      <div class="btn btn-secondary py-4 w-100" (click)="clickOcho()">8</div> 
+      <div class="btn btn-secondary py-4 w-100" (click)="insertNumber('8')">8</div> 
     </div>
     <div class="col-3 col-lg-3 numeros pt-1">
-      <div class="btn btn-secondary py-4 w-100" (click)="clickSiete()">7</div> 
+      <div class="btn btn-secondary py-4 w-100" (click)="insertNumber('7')">7</div> 
     </div>
   </div>
   <div class="row">
     <div class="col-3 numeros">
-      <div class="btn btn-secondary py-4 w-100" (click)="clickSeis()">6</div> 
+      <div class="btn btn-secondary py-4 w-100" (click)="insertNumber('6')">6</div> 
     </div>
     <div class="col-3 numeros">
-      <div class="btn btn-secondary py-4 w-100" (click)="clickCinco()">5</div> 
+      <div class="btn btn-secondary py-4 w-100" (click)="insertNumber('5')">5</div> 
     </div>
     <div class="col-3 numeros">
-      <div class="btn btn-secondary py-4 w-100" (click)="clickCuatro()">4</div> 
+      <div class="btn btn-secondary py-4 w-100" (click)="insertNumber('4')">4</div> 
     </div>
   </div>
   <div class="row">
     <div class="col-3 numeros">
-      <div class="btn btn-secondary py-4 w-100" (click)="clickTres()">3</div> 
+      <div class="btn btn-secondary py-4 w-100" (click)="insertNumber('3')">3</div> 
     </div>
     <div class="col-3 numeros">
-      <div class="btn btn-secondary py-4 w-100" (click)="clickDos()">2</div> 
+      <div class="btn btn-secondary py-4 w-100" (click)="insertNumber('2')">2</div> 
     </div>
     <div  class="col-3 numeros">
-      <div class="btn btn-secondary py-4 w-100" (click)="clickUno()">1</div> 
+      <div class="btn btn-secondary py-4 w-100" (click)="insertNumber('1')">1</div> 
     </div>
   </div>
   <div class="row">
     <div class="col-3 numeros">
-      <div class="btn btn-secondary py-4 w-100" (click)="clickUno()">.</div> 
+      <div class="btn btn-secondary py-4 w-100" (click)="insertNumber('.')">.</div> 
     </div>
     <div class="col-3 numeros">
-      <div class="btn btn-secondary py-4 w-100" (click)="clickCero()">0</div> 
+      <div class="btn btn-secondary py-4 w-100" (click)="insertNumber('0')">0</div> 
     </div>
     <div class="col-3 numeros">
-      <div class="btn btn-secondary py-4 w-100" (click)="clickCeroDoble()">00</div> 
+      <div class="btn btn-secondary py-4 w-100" (click)="insertNumber('00')">00</div> 
     </div>
   </div>
   </div>
   <div class="container contOp">
     <div class="row">
       <div class="col-3 col-lg-12 operadores">
-        <div class="btn btn-success py-4 w-100" (click)="clickUno()">CE</div> 
+        <div class="btn btn-success py-4 w-100" (click)="clean()">CE</div> 
       </div>
     </div>
     <div class="row">
       <div class="col-3 col-lg-12 operadores">
-        <div class="btn btn-success py-3 w-100" (click)="clickUno()">/</div> 
+        <div class="btn btn-success py-3 w-100" (click)="insertOperation('/')">/</div> 
       </div>
     </div>
     <div class="row">
       <div class="col-3 col-lg-12 operadores">
-        <div class="btn btn-success py-3 w-100" (click)="clickUno()">X</div> 
+        <div class="btn btn-success py-3 w-100" (click)="insertOperation('*')">X</div> 
       </div>
     </div>
     <div class="row">
       <div class="col-3 col-lg-12 operadores">
-        <div class="btn btn-success py-3 w-100" (click)="clickUno()">-</div>
+        <div class="btn btn-success py-3 w-100" (click)="insertOperation('-')">-</div>
       </div>
     </div>
     <div class="row">
       <div class="col-3 col-lg-12 operadores">
-        <div class="btn btn-success py-3 w-100" (click)="clickUno()">+</div> 
+        <div class="btn btn-success py-3 w-100" (click)="insertOperation('+')">+</div> 
       </div>
     </div>
     <div class="row">
       <div class="col-3 col-lg-12 operadores">
-        <div class="btn btn-success py-3 w-100" (click)="clickUno()">=</div> 
+        <div class="btn btn-success py-3 w-100" (click)="calculate()">=</div> 
       </div>
     </div>
   </div>

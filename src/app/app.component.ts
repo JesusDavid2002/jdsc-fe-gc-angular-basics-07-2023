@@ -7,55 +7,69 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'proyecto-calculadora';
-  resultado:number=0;
-  OP:number=0;
-  valorA:number=0;
-  valorB:number=0;
+  operation: string = '';
+  valorDef: string = '0';
+  resultado:string = '';
 
-
-  clickUno(){
-    this.valorA = 1;
+  updateResultado(valor: string){
+    this.resultado = valor;
   }
 
-  clickDos(){
-    this.valorA = 2;
+  updateOperacion(valor: string){
+    this.operation = valor;
+  }
+
+  operations(newValorA: number, newValorB: number, newOperation: string): number{      
+    switch (newOperation) {
+      case '+':
+        return newValorA + newValorB;
+      case '-':
+        return newValorA - newValorB;
+      case '*':
+        return newValorA * newValorB;
+      case '/':
+        return newValorA / newValorB;
+      default:
+        return newValorA;
+    }
+  }
+
+  insertNumber(numero: string){
+    if (this.valorDef === '0') {
+      this.valorDef = numero;
+    }else if(this.valorDef === '.'){
+      this.valorDef += '.' + numero;
+    }else{
+      this.valorDef += numero;
+    }
+    this.operation += numero;
+  }
+
+  insertOperation(newOperation: string){
+    if (this.operation === '') {
+      this.operation = this.valorDef + newOperation;
+      this.updateResultado(this.valorDef);
+    } else {
+      this.calculate();      
+      this.operation = this.valorDef + newOperation;
+      this.updateResultado(this.resultado);
+    }
+    this.valorDef = '0';
+  }
+
+  calculate(){
+      let valorA = parseFloat(this.valorDef);
+      let valorB = parseFloat(this.resultado);
+      let resultFinal = this.operations(valorA, valorB, this.operation);
+      this.updateResultado(resultFinal.toString());
+      this.updateOperacion(resultFinal.toString());
   }
   
-  clickTres(){
-    this.valorA = 3;
+  clean(){
+    this.updateOperacion('');
+    this.updateResultado('');
+    this.valorDef = '';
   }
-
-  clickCuatro(){
-    this.valorA = 4;
-  }
-  
-  clickCinco(){
-    this.valorA = 5;
-  }
-
-  clickSeis(){
-    this.valorA = 6;
-  }
-  
-  clickSiete(){
-    this.valorA = 7;
-  }
-
-  clickOcho(){
-    this.valorA = 8;
-  }
-  
-  clickNueve(){
-    this.valorA = 9;
-  }
-
-  clickCero(){
-    this.valorA = 0;
-  }
-  
-  clickCeroDoble(){
-    this.valorA = 0;
-    let duplicador = this.valorA.toString().padStart(2, '0');
-  }
-
 }
+
+
