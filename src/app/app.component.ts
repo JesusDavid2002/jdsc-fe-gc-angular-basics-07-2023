@@ -7,19 +7,22 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'proyecto-calculadora';
-  operation: string = '';
-  valorDef: string = '0';
-  resultado:string = '';
+  
+  operation = '';
+  operacionGlobal = ''; 
+  primerValor = '0'; 
+  segundoValor = ''; 
+  result = '0'; 
 
-  updateResultado(valor: string){
-    this.resultado = valor;
+  updateResultado(valor: string) {
+    this.result = valor;
   }
 
-  updateOperacion(valor: string){
-    this.operation = valor;
+  updateOperacionGlobal(valor: string) {
+    this.operacionGlobal = valor;
   }
 
-  operations(newValorA: number, newValorB: number, newOperation: string): number{      
+  operations(newValorA: number, newValorB: number, newOperation: string): number {
     switch (newOperation) {
       case '+':
         return newValorA + newValorB;
@@ -30,45 +33,66 @@ export class AppComponent {
       case '/':
         return newValorA / newValorB;
       default:
-        return newValorA;
+        return newValorB;
     }
   }
 
-  insertNumber(numero: string){
-    if (this.valorDef === '0') {
-      this.valorDef = numero;
-    }else if(this.valorDef === '.'){
-      this.valorDef += '.' + numero;
-    }else{
-      this.valorDef += numero;
-    }
-    this.operation += numero;
-  }
-
-  insertOperation(newOperation: string){
-    if (this.operation === '') {
-      this.operation = this.valorDef + newOperation;
-      this.updateResultado(this.valorDef);
+  insertNumber(numero: string) {
+    if (numero === '.') {
+      if (this.segundoValor === '') {
+        this.segundoValor = '0';
+      }
+      if (!this.segundoValor.includes('.')) {
+        this.segundoValor += numero;
+        this.operacionGlobal += numero;
+      }
     } else {
-      this.calculate();      
-      this.operation = this.valorDef + newOperation;
-      this.updateResultado(this.resultado);
+      if (this.primerValor === '0' && this.segundoValor === '') {
+        this.primerValor = numero;
+        this.operacionGlobal = numero;
+      } else {
+        this.segundoValor += numero;
+        this.operacionGlobal += numero;
+      }
     }
-    this.valorDef = '0';
   }
 
-  calculate(){
-      let valorA = parseFloat(this.valorDef);
-      let valorB = parseFloat(this.resultado);
-      let resultFinal = this.operations(valorA, valorB, this.operation);
-      this.updateResultado(resultFinal.toString());
-      this.updateOperacion(resultFinal.toString());
+  insertOperation(newOperation: string) {
+    if (
+      newOperation === '+' || newOperation === '-' || newOperation === '*' || newOperation === '/') {
+      if (this.primerValor !== '') {
+        this.operation = newOperation;
+        this.operacionGlobal += newOperation;
+        this.primerValor = this.operacionGlobal;
+        this.segundoValor = '';
+      }
+    } else {
+      this.updateResultado('0');
+    }
   }
-  
-  clean(){
-    this.updateOperacion('');
-    this.updateResultado('');
-    this.valorDef = '';
+
+  calculate() {
+    if (this.primerValor !== '' && this.segundoValor !== '') {
+      let primerValorFloat = parseFloat(this.primerValor);
+      let segundoValorFloat = parseFloat(this.segundoValor);
+
+      let resultFinal = this.operations(primerValorFloat, segundoValorFloat, this.operation);
+
+      this.updateOperacionGlobal('');
+      this.operacionGlobal = '';
+      this.primerValor = '0';
+      this.segundoValor = '';
+      this.updateResultado(resultFinal.toString());
+    } else {
+      this.result = '0';
+    }
+  }
+
+  clean() {
+    this.operacionGlobal = '';
+    this.primerValor = '0';
+    this.segundoValor = '';
+    this.result = '0';
   }
 }
 
